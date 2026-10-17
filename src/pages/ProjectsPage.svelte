@@ -4,17 +4,17 @@
   import { projectsConfig } from '../lib/config/projects';
 
   const PROJECTS_PER_PAGE = 6;
-  const totalPages = Math.ceil(projectsConfig.items.length / PROJECTS_PER_PAGE);
+  $: totalPages = Math.ceil($projectsConfig.items.length / PROJECTS_PER_PAGE);
   let currentPage = 1;
 
   $: startIndex = (currentPage - 1) * PROJECTS_PER_PAGE;
-  $: currentItems = projectsConfig.items.slice(startIndex, startIndex + PROJECTS_PER_PAGE);
+  $: currentItems = $projectsConfig.items.slice(startIndex, startIndex + PROJECTS_PER_PAGE);
 </script>
 
 <main class="min-h-screen flex flex-col">
   <div class="relative flex-grow flex flex-col">
     <div class="absolute inset-0 z-0 overflow-hidden">
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:28px_48px] -z-10"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:28px_48px] -z-10"></div>
       <div class="absolute left-0 right-0 top-0 -z-10 m-auto h-[1200px] w-[1200px] rounded-full bg-neutral-400 opacity-15 blur-[100px]"></div>
     </div>
 
@@ -23,10 +23,10 @@
     <section class="relative z-20 max-w-4xl mx-auto mt-32 mb-12 px-7 lg:px-0">
       <div class="relative z-20 w-full mx-auto lg:mx-0">
         <h2 class="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-3xl lg:text-4xl">
-          {projectsConfig.title}
+          {$projectsConfig.title}
         </h2>
         <p class="mt-3 text-sm leading-6 text-neutral-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg">
-          {projectsConfig.description}
+          {$projectsConfig.description}
         </p>
       </div>
 
@@ -79,7 +79,7 @@
             onclick={() => (currentPage = Math.max(1, currentPage - 1))}
             class={`px-3 py-1 text-sm font-medium text-neutral-600 dark:text-neutral-400 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            {projectsConfig.pagination.previous}
+            {$projectsConfig.pagination.previous}
           </button>
           {#each Array(totalPages) as _, index (index)}
             <button
@@ -95,7 +95,7 @@
             onclick={() => (currentPage = Math.min(totalPages, currentPage + 1))}
             class={`px-3 py-1 text-sm font-medium text-neutral-600 dark:text-neutral-400 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            {projectsConfig.pagination.next}
+            {$projectsConfig.pagination.next}
           </button>
         </div>
       {/if}

@@ -10,7 +10,7 @@
       fill: none;
       stroke: #000000;
       stroke-width: 1.5;
-      opacity: 0.08;
+      opacity: 0.2;
       animation: scale 10s ease-in-out infinite;
     }
     .radar-fill {

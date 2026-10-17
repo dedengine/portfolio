@@ -1,4 +1,7 @@
-export const projectsConfig = {
+import { derived } from 'svelte/store'
+import { language } from '../stores/language'
+
+const en = {
   title: "Our Projects",
   description: "A selection of projects I've designed and built, from dashboards and data visualizations to developer tools.",
   backButton: "Back to Home",
@@ -81,4 +84,91 @@ export const projectsConfig = {
       imageUrl: "/assets/images/projects/project12.jpg"
     }
   ]
-} as const;
+}
+
+const id = {
+  title: "Proyek Saya",
+  description: "Kumpulan proyek yang saya desain dan bangun, dari dasbor dan visualisasi data hingga alat bantu developer.",
+  backButton: "Kembali ke Beranda",
+  noProjects: "Proyek tidak ditemukan.",
+  pagination: {
+    previous: "Sebelumnya",
+    next: "Berikutnya"
+  },
+  items: [
+    {
+      title: "Dasbor Analitik",
+      description: "Metrik real-time dengan grafik interaktif.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project1.jpg"
+    },
+    {
+      title: "Antarmuka Pustaka Game",
+      description: "Pustaka game bertema gelap dengan filter cepat.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project2.jpg"
+    },
+    {
+      title: "Kit Grafik Real-Time",
+      description: "Komponen grafik yang bisa dipakai ulang, dibangun untuk kecepatan.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project3.png"
+    },
+    {
+      title: "Terminal Trading",
+      description: "Candlestick langsung dan tampilan order book.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project4.jpg"
+    },
+    {
+      title: "Pemantau Infrastruktur",
+      description: "Kesehatan server, lalu lintas, dan status deploy.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project5.jpg"
+    },
+    {
+      title: "Playground Visualisasi Data",
+      description: "Grafik 3D eksperimental yang dirender dengan WebGL.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project6.png"
+    },
+    {
+      title: "Portal Developer",
+      description: "Dokumentasi, onboarding, dan perkakas untuk tim developer.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project7.jpg"
+    },
+    {
+      title: "Mesin Blog Statis",
+      description: "Mesin blog Markdown dengan pencarian teks lengkap.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project8.jpg"
+    },
+    {
+      title: "Platform Hackathon",
+      description: "Pendaftaran, jadwal, dan galeri proyek.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project9.jpg"
+    },
+    {
+      title: "Landing Page Produk",
+      description: "Halaman fokus konversi dengan animasi scroll.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project10.jpg"
+    },
+    {
+      title: "Dasbor Studio",
+      description: "Pelacakan klien dengan catatan waktu dan faktur.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project11.jpg"
+    },
+    {
+      title: "Konfigurator Keyboard",
+      description: "Atur ulang tombol, layer, dan pencahayaan di browser.",
+      href: "#!",
+      imageUrl: "/assets/images/projects/project12.jpg"
+    }
+  ]
+}
+
+export const projectsConfig = derived(language, ($lang) => ($lang === 'id' ? id : en))

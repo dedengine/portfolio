@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { link } from 'svelte-spa-router';
   import ThemeToggle from './ThemeToggle.svelte';
+  import LanguageToggle from './LanguageToggle.svelte';
   import { globalConfig } from '../config/global';
 
   let isMenuOpen = $state(false);
@@ -46,7 +47,7 @@
   <div class="flex items-center justify-between h-full max-w-7xl pl-6 pr-4 mx-auto border-b border-l-0 border-r-0 border-transparent select-none lg:border-r lg:border-l lg:rounded-b-xl">
     <a use:link href="/" class="h-5 text-base group relative z-30 flex items-center space-x-1.5 text-black dark:text-white font-semibold whitespace-nowrap">
       <span class="text-xl -translate-y-0.5 group-hover:-rotate-12 group-hover:scale-[1.2] ease-in-out duration-300">✦</span>
-      <span class="-translate-y-0.5">{globalConfig.site.author}</span>
+      <span class="-translate-y-0.5">{$globalConfig.site.author}</span>
     </a>
 
     <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
@@ -87,7 +88,7 @@
           <div class="relative w-full h-full bg-white border border-dashed border-neutral-300 dark:border-neutral-700 backdrop-blur-sm rounded-xl dark:bg-neutral-950"></div>
         </div>
 
-        {#each globalConfig.navigation.items as item}
+        {#each $globalConfig.navigation.items as item}
           <a
             use:link
             href={item.href}
@@ -100,6 +101,7 @@
       </div>
 
       <ThemeToggle />
+      <LanguageToggle />
     </nav>
   </div>
 </header>

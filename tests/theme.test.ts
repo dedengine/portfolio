@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { test, expect, vi } from 'vitest';
 import { theme } from '../src/lib/stores/theme';
 
 test('applies and removes the dark class on the document element', () => {
@@ -11,4 +11,33 @@ test('applies and removes the dark class on the document element', () => {
   expect(document.documentElement.classList.contains('dark')).toBe(true);
 
   unsubscribe();
+});
+
+test('follows the device theme until the user picks one', async () => {
+  localStorage.clear();
+  let fire: ((event: { matches: boolean }) => void) | null = null;
+  vi.stubGlobal('matchMedia', () => ({
+    matches: false,
+    addEventListener: (_type: string, listener: (event: { matches: boolean }) => void) => {
+      fire = listener;
+    },
+  }));
+
+  vi.resetModules();
+  const { theme: freshTheme } = await import('../src/lib/stores/theme');
+
+  // first visit: device theme applied, nothing stored yet
+  expect(document.documentElement.classList.contains('dark')).toBe(false);
+  expect(localStorage.getItem('theme-choice')).toBeNull();
+
+  // device switches to dark while the site is open
+  fire!({ matches: true });
+  expect(document.documentElement.classList.contains('dark')).toBe(true);
+
+  // manual pick wins and is the only thing stored
+  freshTheme.set('light');
+  expect(localStorage.getItem('theme-choice')).toBe('light');
+
+  fire!({ matches: true });
+  expect(document.documentElement.classList.contains('dark')).toBe(false);
 });

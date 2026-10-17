@@ -5,17 +5,17 @@
   import { postsConfig } from '../lib/config/posts';
 
   const POSTS_PER_PAGE = 5;
-  const totalPages = Math.ceil(postsConfig.posts.length / POSTS_PER_PAGE);
+  $: totalPages = Math.ceil($postsConfig.posts.length / POSTS_PER_PAGE);
   let currentPage = 1;
 
   $: startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-  $: currentPosts = postsConfig.posts.slice(startIndex, startIndex + POSTS_PER_PAGE);
+  $: currentPosts = $postsConfig.posts.slice(startIndex, startIndex + POSTS_PER_PAGE);
 </script>
 
 <main class="min-h-screen flex flex-col">
   <div class="relative flex-grow flex flex-col">
     <div class="page-backdrop absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:28px_48px] -z-10"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:28px_48px] -z-10"></div>
       <div class="absolute left-0 right-0 top-0 -z-10 m-auto h-[1200px] w-[1200px] rounded-full bg-neutral-400 opacity-15 blur-[100px]"></div>
     </div>
 
@@ -24,7 +24,7 @@
     <section class="posts-section relative z-20 w-[896px] mx-auto mt-32 mb-12">
       <div class="flex justify-between items-center mb-8">
         <h2 class="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-3xl lg:text-4xl">
-          {postsConfig.title}
+          {$postsConfig.title}
         </h2>
       </div>
 
@@ -49,7 +49,7 @@
             onclick={() => (currentPage = Math.max(1, currentPage - 1))}
             class={`px-3 py-1 text-sm font-medium text-neutral-600 dark:text-neutral-400 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            {postsConfig.pagination.previous}
+            {$postsConfig.pagination.previous}
           </button>
           {#each Array(totalPages) as _, index (index)}
             <button
@@ -65,7 +65,7 @@
             onclick={() => (currentPage = Math.min(totalPages, currentPage + 1))}
             class={`px-3 py-1 text-sm font-medium text-neutral-600 dark:text-neutral-400 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            {postsConfig.pagination.next}
+            {$postsConfig.pagination.next}
           </button>
         </div>
       {/if}

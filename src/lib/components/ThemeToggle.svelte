@@ -38,7 +38,7 @@
     </svg>
   </div>
   <span class="hidden sm:inline-block">
-    <span class={`ml-2 ${$theme === 'dark' ? 'hidden' : ''}`}>{globalConfig.theme.dayMode}</span>
-    <span class={`ml-2 ${$theme === 'light' ? 'hidden' : ''}`}>{globalConfig.theme.nightMode}</span>
+    <span class={`ml-2 ${$theme === 'dark' ? 'hidden' : ''}`}>{$globalConfig.theme.dayMode}</span>
+    <span class={`ml-2 ${$theme === 'light' ? 'hidden' : ''}`}>{$globalConfig.theme.nightMode}</span>
   </span>
 </button>
