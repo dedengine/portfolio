@@ -8,13 +8,13 @@ import { fileURLToPath } from 'node:url'
 const root = fileURLToPath(new URL('.', import.meta.url))
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => ({
-  // GitHub Pages serves this repo from /portfolio/, dev stays at /
-  base: mode === 'production' ? '/portfolio/' : '/',
+export default defineConfig({
+  // GitHub Pages serves this repo from /portfolio/; Vercel, other hosts and dev serve from /
+  base: process.env.GITHUB_ACTIONS ? '/portfolio/' : '/',
   plugins: [svelte(), tailwindcss()],
   resolve: {
     alias: {
       $lib: path.resolve(root, 'src/lib')
     }
   },
-}))
+})
