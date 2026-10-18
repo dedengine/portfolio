@@ -16,8 +16,6 @@
     "allowJs": true,
     "checkJs": true,
     "moduleDetection": "force",
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "paths": {
       "$lib/*": ["./src/lib/*"],
       "$lib": ["./src/lib"]
