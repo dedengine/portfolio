@@ -62,7 +62,7 @@ const en = {
       },
       email: {
         text: "email",
-        url: "mailto:[EMAIL_ADDRESS]"
+        url: "mailto:sutisnasantosa@gmail.com"
       }
     }
   },
@@ -131,7 +131,7 @@ const id = {
       },
       email: {
         text: "email",
-        url: "mailto:[EMAIL_ADDRESS]"
+        url: "mailto:sutisnasantosa@gmail.com"
       }
     }
   },
