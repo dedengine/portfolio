@@ -4,10 +4,11 @@
   import Footer from '../lib/components/Footer.svelte';
   import { theme } from '../lib/stores/theme';
   import { homeConfig } from '../lib/config/home';
+  import { asset } from '../lib/utils/asset';
 
   $: imageSrc = $theme === 'dark'
-    ? '/assets/images/tech-background.svg'
-    : '/assets/images/tech-background-light.svg';
+    ? asset('/assets/images/tech-background.svg')
+    : asset('/assets/images/tech-background-light.svg');
 </script>
 
 <main class="min-h-screen flex flex-col">

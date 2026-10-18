@@ -1,6 +1,7 @@
 <script lang="ts">
   import { link } from 'svelte-spa-router';
   import { postsConfig } from '../config/posts';
+  import { asset } from '../utils/asset';
 
   export let title: string;
   export let description: string;
@@ -54,7 +55,7 @@
           </div>
         </div>
         <div class="post-card-image relative w-64 h-48 rounded-xl overflow-hidden flex-shrink-0">
-          <img src={imageUrl} alt={title} class="object-cover w-full h-full" />
+          <img src={asset(imageUrl)} alt={title} class="object-cover w-full h-full" />
         </div>
       </div>
     </div>

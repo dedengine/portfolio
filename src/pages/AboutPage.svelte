@@ -2,6 +2,7 @@
   import Navbar from '../lib/components/Navbar.svelte';
   import Footer from '../lib/components/Footer.svelte';
   import { aboutConfig } from '../lib/config/about';
+  import { asset } from '../lib/utils/asset';
 
   let connectParts = $derived($aboutConfig.connect.description.split($aboutConfig.connect.links.twitter.text));
   let skillsExpanded = $state(false);
@@ -47,7 +48,7 @@
           </div>
           <div class="about-photo-col w-full md:w-1/2 flex justify-end">
             <div class="about-photo relative w-[360px] h-[360px]">
-              <img src="/assets/images/about/coder.jpg" alt="Profile" class="object-cover rounded-xl w-full h-full" />
+              <img src={asset('/assets/images/about/coder.jpg')} alt="Profile" class="object-cover rounded-xl w-full h-full" />
             </div>
           </div>
         </div>
